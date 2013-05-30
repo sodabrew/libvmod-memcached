@@ -73,6 +73,29 @@ vmod_config(struct sess *sp, struct vmod_priv *priv, const char *config)
 
 /** The following may be called after 'memcached.servers(...)' **/
 
+static int
+str_to_mc_enum(const char *val)
+{
+    if (!strcmp(val, "MEMCACHED_BEHAVIOR_DISTRIBUTION"))
+        return MEMCACHED_BEHAVIOR_DISTRIBUTION;
+    if (!strcmp(val, "MEMCACHED_DISTRIBUTION_CONSISTENT"))
+        return MEMCACHED_DISTRIBUTION_CONSISTENT;
+    WRONG("Undefined lookup value");
+}
+
+void
+vmod_behavior_set(struct sess *sp, struct vmod_priv *priv, const char *flag, const char *data)
+{
+	memcached_return rc;
+	memcached_st *mc = get_memcached(priv->priv);
+	if (!mc) return;
+
+    int flag_i = str_to_mc_enum(flag);
+    int data_i = str_to_mc_enum(data);
+
+	rc = memcached_behavior_set(mc, flag_i, data_i);
+}
+
 void
 vmod_set(struct sess *sp, struct vmod_priv *priv, const char *key, const char *value, int expiration, int flags)
 {
@@ -126,4 +149,6 @@ vmod_decr(struct sess *sp, struct vmod_priv *priv, const char *key, int offset)
 
 	return (int)value;
 }
+
+
 

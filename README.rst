@@ -26,8 +26,8 @@ Implements the basic memcached operations of get, set, incr, decr.
 FUNCTIONS
 =========
 
-config
-------
+servers
+-------
 
 Prototype
         ::
@@ -42,6 +42,24 @@ Example
         ::
 
                 memcached.servers("localhost anotherhost:12345");
+
+behavior_set
+------------
+
+Prototype
+        ::
+
+                behavior_set(STRING memcached_behavior_flag, STRING memcached_behavior_value)
+Return value
+	NONE
+Description
+    Change the value for particular options of the memcached client. This is not an
+    exhaustive implementation and not all flags/values are available. See memcached_behavior(3)
+    for more detail on behaviors. Only that shown in the example below is available.
+Example
+        ::
+
+                memcached.behavior_set("MEMCACHED_BEHAVIOR_DISTRIBUTION", "MEMCACHED_DISTRIBUTION_CONSISTENT");
 
 get
 ---
