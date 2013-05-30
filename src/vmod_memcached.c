@@ -79,8 +79,14 @@ str_to_mc_enum(const char *val)
 {
     if (!strcmp(val, "MEMCACHED_BEHAVIOR_DISTRIBUTION"))
         return MEMCACHED_BEHAVIOR_DISTRIBUTION;
+    if (!strcmp(val, "MEMCACHED_DISTRIBUTION_MODULA"))
+        return MEMCACHED_DISTRIBUTION_MODULA;
     if (!strcmp(val, "MEMCACHED_DISTRIBUTION_CONSISTENT"))
         return MEMCACHED_DISTRIBUTION_CONSISTENT;
+    if (!strcmp(val, "MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA"))
+        return MEMCACHED_DISTRIBUTION_CONSISTENT_KETAMA;
+    if (!strcmp(val, "MEMCACHED_DISTRIBUTION_RANDOM"))
+        return MEMCACHED_DISTRIBUTION_RANDOM;
     WRONG("Undefined lookup value");
 }
 
