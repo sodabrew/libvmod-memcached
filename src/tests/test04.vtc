@@ -24,6 +24,4 @@ client c1 {
 	rxresp
 	expect resp.http.high == "4"
 	expect resp.http.low == "2"
-}
-
-client c1 -run
+} -run
