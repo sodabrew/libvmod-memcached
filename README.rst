@@ -60,6 +60,24 @@ Example
                 // with consistent hashing enabled and namespace
                 memcached.servers({"--SERVER=web1.gloople:11211 --SERVER=web2.gloople:11211 --DISTRIBUTION=consistent --NAMESPACE="memc.sess.key.""});
 
+behavior_set
+------------
+
+Prototype
+        ::
+
+                behavior_set(STRING memcached_behavior_flag, STRING memcached_behavior_value)
+Return value
+	NONE
+Description
+    Change the value for particular options of the memcached client. This is not an
+    exhaustive implementation and not all flags/values are available. See memcached_behavior(3)
+    for more detail on behaviors. Only that shown in the example below is available.
+Example
+        ::
+
+                memcached.behavior_set("MEMCACHED_BEHAVIOR_DISTRIBUTION", "MEMCACHED_DISTRIBUTION_CONSISTENT");
+
 get
 ---
 
